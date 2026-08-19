@@ -103,7 +103,7 @@ int main(int argc,char **argv) {
     printf("Bad grid size.\n");
     exit(0);
   }
-  Nvox = Nside*Nside*Nside;	/* the total number of voxels (grid cells) */
+  Nvox = (long)Nside*Nside*Nside;	/* the total number of voxels (grid cells) */
   printf("Total number of voxels: %ld\n",Nvox);
 
   if (obo == 'v'){
@@ -156,7 +156,7 @@ int main(int argc,char **argv) {
       adjcount = 0;
       for (j=0;j<6;j++) {
         ind = 3*j;
-        nbr_index = nbrs[ind]*Nside*Nside + nbrs[ind+1]*Nside + nbrs[ind+2];
+        nbr_index = (long)nbrs[ind]*Nside*Nside + (long)nbrs[ind+1]*Nside + nbrs[ind+2];
         /* count adjacencies to non-border voxels */
         if (p[nbr_index].dens < borderdens) {
           adjcount++;
@@ -168,7 +168,7 @@ int main(int argc,char **argv) {
       adjcount = 0;
       for (j=0;j<6;j++) {
         ind = 3*j;
-        nbr_index = nbrs[ind]*Nside*Nside + nbrs[ind+1]*Nside + nbrs[ind+2];
+        nbr_index = (long)nbrs[ind]*Nside*Nside + (long)nbrs[ind+1]*Nside + nbrs[ind+2];
         if (p[nbr_index].dens < borderdens) {
           p[i].adj[adjcount] = nbr_index;
           adjcount++;
